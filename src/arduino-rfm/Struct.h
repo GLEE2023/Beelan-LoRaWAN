@@ -121,6 +121,12 @@ typedef enum {
 
 typedef enum {
 #if defined(US_915)
+    SF12BW250   = 0x00,
+#endif
+} dataRates_t;
+/*
+typedef enum {
+#if defined(US_915)
     SF10BW125   = 0x00,
     SF9BW125    = 0x01,
     SF8BW125    = 0x02,
@@ -151,9 +157,9 @@ typedef enum {
     SF7BW125    = 0x05,
     SF7BW250    = 0x06
 #endif
-} dataRates_t;
+} dataRates_t;*/
 
-typedef enum {CLASS_A, CLASS_C} devclass_t;
+typedef enum {CLASS_A/*, CLASS_C*/} devclass_t;
 
 typedef enum {NO_RX, NEW_RX} rx_t;
 

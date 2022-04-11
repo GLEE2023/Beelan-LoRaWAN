@@ -1,3 +1,20 @@
+/* !!!! Functionality we need to add is the following: !!!!*/
+/* Class B functionality (extra receive windows spaced out over intervals, provided from OBC/Gateway) */
+/* Forwarding (a extra function to handle the temporary storage and resending of data from other LunaSats) */
+/* Some sort of activation. If OTAA, do nothing. If ABP, remove OTAA and replace with ABP functionaltiy */
+/* Acknowledgement (LunaSat should keep resending OG packet until it is acknowledged) */
+
+
+
+
+
+
+
+
+
+
+
+
 /******************************************************************************************
 * Copyright 2017 Ideetron B.V.
 *
@@ -91,6 +108,7 @@ void LORA_Cycle(sBuffer *Data_Tx, sBuffer *Data_Rx, RFM_command_t *RFM_Command, 
 		#endif
 
 		// Class C open RX2 immediately after sending data
+		/*
 		if(LoRa_Settings->Mote_Class == CLASS_C){
 			#ifdef US_915
 			LoRa_Settings->Channel_Rx = 0x08;    // set Rx2 channel 923.3 MHZ
@@ -100,7 +118,8 @@ void LORA_Cycle(sBuffer *Data_Tx, sBuffer *Data_Rx, RFM_command_t *RFM_Command, 
 			LoRa_Settings->Datarate_Rx = SF12BW125;   //set RX2 datarate 12
 			#endif
 			LORA_Receive_Data(Data_Rx, Session_Data, OTAA_Data, Message_Rx, LoRa_Settings);  //BUG DETECT SENDED PACKET ALWAYS (IT DOES UPDATE)
-		}
+		}*/
+
 		//Wait rx1 window delay 
 		//Receive on RX2 if countinous mode is available
 		//check if anything if coming on class C RX2 window in class A no DIO0 flag will be activated
@@ -319,11 +338,13 @@ void LORA_Receive_Data(sBuffer *Data_Rx, sLoRa_Session *Session_Data, sLoRa_OTAA
 		Message_Status = RFM_Get_Package(&RFM_Package);
 
 		//If mote class C switch RFM back to continuous receive
+		/*
 		if(LoRa_Settings->Mote_Class == CLASS_C)
 		{
 			//Switch RFM to Continuous Receive
 			RFM_Continuous_Receive(LoRa_Settings);
 		}
+		*/
 	}
 	//if CRC ok breakdown package
 	if(Message_Status == CRC_OK)

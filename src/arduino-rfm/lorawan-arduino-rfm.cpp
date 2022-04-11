@@ -275,8 +275,10 @@ int LoRaWANClass::getRssi()
 
 void LoRaWANClass::setDeviceClass(devclass_t dev_class)
 {
-    LoRa_Settings.Mote_Class = (dev_class == CLASS_A) ? CLASS_A : CLASS_C;
-
+    //LoRa_Settings.Mote_Class = (dev_class == CLASS_A) ? CLASS_A : CLASS_C;
+    LoRa_Settings.Mote_Class = CLASS_A;
+    RFM_Switch_Mode(RFM_MODE_STANDBY);
+    /*
     if (LoRa_Settings.Mote_Class == CLASS_A)
     {
         RFM_Switch_Mode(RFM_MODE_STANDBY);
@@ -285,6 +287,7 @@ void LoRaWANClass::setDeviceClass(devclass_t dev_class)
     {
         RFM_Continuous_Receive(&LoRa_Settings);
     }
+    */
 
     //Reset RFM command
     RFM_Command_Status = NO_RFM_COMMAND;
@@ -426,6 +429,7 @@ void LoRaWANClass::update(void)
     }
 
     //Type C mote transmit and receive handling
+    /*
     if (LoRa_Settings.Mote_Class == CLASS_C)
     {
         //Transmit
@@ -451,6 +455,7 @@ void LoRaWANClass::update(void)
         }
         RFM_Command_Status = NO_RFM_COMMAND;
     }
+    */
 }
 
 void LoRaWANClass::randomChannel()

@@ -310,6 +310,7 @@ static unsigned char RFM_Read(unsigned char RFM_Address)
 *                      0x04 -> 31.25khz , 0x05 -> 41.7khz, 0x06 -> 62.5khz, 0x07 -> 125khz, 
 *                      0x08 -> 250khz   , 0x09 -> 500khz}
 ********************************************************************************************/
+/*
 static void RFM_change_SF_BW(unsigned char _SF, unsigned char _BW)
 {
 	RFM_Write(RFM_REG_MODEM_CONFIG2, (_SF << 4) | 0b0100); //SFx CRC On
@@ -325,6 +326,7 @@ static void RFM_change_SF_BW(unsigned char _SF, unsigned char _BW)
   #endif
     
 }
+*/
 /*
 *****************************************************************************************
 * Description : Function to change the datarate of the RFM module. Setting the following
@@ -689,6 +691,7 @@ message_t RFM_Single_Receive(sSettings *LoRa_Settings)
 * Arguments   : *LoRa_Settings pointer to sSettings struct
 *****************************************************************************************
 */
+/*
 void RFM_Continuous_Receive(sSettings *LoRa_Settings)
 {
   //Change DIO 0 back to RxDone and DIO 1 to rx timeout
@@ -717,6 +720,7 @@ void RFM_Continuous_Receive(sSettings *LoRa_Settings)
 	//Switch to continuous receive
 	RFM_Switch_Mode(RFM_MODE_RXCONT);
 }
+*/
 
 /*
 *****************************************************************************************
