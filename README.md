@@ -1,8 +1,10 @@
 ![LibraryBuild](https://github.com/BeelanMX/Beelan-LoRaWAN/workflows/LibraryBuild/badge.svg?branch=master)
 
 Arduino LoRaWAN library by Beelan
-Modified by the GLEE2023 Project
 ====================
+Modified by the GLEE2023 Project
+--------------------
+
 This repository contains the simple LoRaWAN library encapsulated to run in the generic platform, allowing using the SX1272, SX1276 transceivers and compatible modules (such as some HopeRF RFM9x modules).
 
 This repository is all based on the library originally created by Ideetron B.V. This library is slightly
