@@ -66,19 +66,20 @@ bool LoRaWANClass::init(void)
     Session_Data.Frame_Counter = &Frame_Counter_Tx;
 
     //Initialize OTAA data struct
-    memset(DevEUI, 0x00, 8);
-    memset(AppEUI, 0x00, 8);
-
-    memset(AppKey, 0x00, 16);
-    memset(DevNonce, 0x00, 2);
-    memset(AppNonce, 0x00, 3);
-    memset(NetID, 0x00, 3);
-    OTAA_Data.DevEUI = DevEUI;
-    OTAA_Data.AppEUI = AppEUI;
-    OTAA_Data.AppKey = AppKey;
-    OTAA_Data.DevNonce = DevNonce;
-    OTAA_Data.AppNonce = AppNonce;
-    OTAA_Data.NetID = NetID;
+//      OTAA Functionality:
+//    memset(DevEUI, 0x00, 8);
+//    memset(AppEUI, 0x00, 8);
+//
+//    memset(AppKey, 0x00, 16);
+//    memset(DevNonce, 0x00, 2);
+//    memset(AppNonce, 0x00, 3);
+//    memset(NetID, 0x00, 3);
+//    OTAA_Data.DevEUI = DevEUI;
+//    OTAA_Data.AppEUI = AppEUI;
+//    OTAA_Data.AppKey = AppKey;
+//    OTAA_Data.DevNonce = DevNonce;
+//    OTAA_Data.AppNonce = AppNonce;
+//    OTAA_Data.NetID = NetID;
 
     // Device Class
     LoRa_Settings.Mote_Class = 0x00; //0x00 is type A, 0x01 is type C
@@ -163,14 +164,17 @@ bool LoRaWANClass::join(void)
         randomChannel();
     }
     // join request
-    LoRa_Send_JoinReq(&OTAA_Data, &LoRa_Settings);
+    //OTAA Join Req:
+    //LoRa_Send_JoinReq(&OTAA_Data, &LoRa_Settings);
     // delay(900);
     // loop for <timeout> wait for join accept
     prev_millis = millis();
     do
     {
-        join_status = LORA_join_Accept(&Buffer_Rx, &Session_Data, &OTAA_Data, &Message_Rx, &LoRa_Settings);
-
+        //OTAA Functionality:
+        //join_status = LORA_join_Accept(&Buffer_Rx, &Session_Data, &OTAA_Data, &Message_Rx, &LoRa_Settings);
+        //ABP:
+        join_status= true;
     } while ((millis() - prev_millis) < timeout && !join_status);
 
     return join_status;
@@ -415,8 +419,10 @@ void LoRaWANClass::update(void)
     if ((RFM_Command_Status == NEW_RFM_COMMAND || RFM_Command_Status == JOIN) && LoRa_Settings.Mote_Class == CLASS_A)
     {
         //LoRaWAN TX/RX cycle
-        LORA_Cycle(&Buffer_Tx, &Buffer_Rx, &RFM_Command_Status, &Session_Data, &OTAA_Data, &Message_Rx, &LoRa_Settings);
-
+        //OTAA:
+        //LORA_Cycle(&Buffer_Tx, &Buffer_Rx, &RFM_Command_Status, &Session_Data, &OTAA_Data, &Message_Rx, &LoRa_Settings);
+        //ABP:
+        LORA_Cycle(&Buffer_Tx, &Buffer_Rx, &RFM_Command_Status, &Session_Data, &Message_Rx, &LoRa_Settings);
         if ((Message_Rx.Frame_Control & 0x20) > 0)
             Ack_Status = NEW_ACK;
 
